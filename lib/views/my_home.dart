@@ -2,7 +2,7 @@ import 'package:crud_hive/models/textfieldmodel.dart';
 import 'package:crud_hive/views/boxes.dart';
 import 'package:crud_hive/widgets/reuse_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 
 class MyHome extends StatefulWidget {
   const MyHome({Key? key}) : super(key: key);
@@ -34,6 +34,8 @@ class _MyHomeState extends State<MyHome> {
       ..section = section;
 
     final box = Boxes.getUsers();
+    //Key Auto Increment
+    box.add(user).then((value) => clearPage());
   }
 
   Future<void> update(TextFieldModel textfieldmodel) async {
@@ -55,6 +57,13 @@ class _MyHomeState extends State<MyHome> {
 
   Future<void> delete(TextFieldModel textfieldmodel) async {
     textfieldmodel.delete();
+  }
+
+  clearPage() {
+    name.text = '';
+    rollno.text = '';
+    degree.text = '';
+    section.text = '';
   }
 
   @override
@@ -88,7 +97,7 @@ class _MyHomeState extends State<MyHome> {
                 ),
                 MaterialButton(
                   onPressed: () {
-                    update(ali[index]);
+                    //update(textfieldmodel);
                     name.clear();
                     rollno.clear();
                     degree.clear();
@@ -99,7 +108,7 @@ class _MyHomeState extends State<MyHome> {
                 ),
                 MaterialButton(
                   onPressed: () {
-                    delete(ali[index]);
+                    //delete(textfieldmodel);
                     name.clear();
                     rollno.clear();
                     degree.clear();
@@ -110,26 +119,25 @@ class _MyHomeState extends State<MyHome> {
                 ),
               ],
             ),
-            Expanded(
-              child: Container(
-                child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        Text(ali[index].name),
-                        Text(ali[index].rollno),
-                        Text(ali[index].degree),
-                        Text(ali[index].section),
-                      ],
-                    );
-                  },
-                  separatorBuilder: ((context, index) {
-                    return Divider();
-                  }),
-                  itemCount: ali.length,
-                ),
+            /*Expanded(
+                child: Container(
+              child: ListView.separated(
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      Text(ali[index].name),
+                      Text(ali[index].rollno),
+                      Text(ali[index].degree),
+                      Text(ali[index].section),
+                    ],
+                  );
+                },
+                separatorBuilder: ((context, index) {
+                  return Divider();
+                }),
+                itemCount: ali.length,
               ),
-            ),
+            )),*/
           ],
         ),
       ),
