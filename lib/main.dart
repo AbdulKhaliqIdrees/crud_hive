@@ -7,7 +7,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(TextFieldModelAdapter());
-  await Hive.openBox<TextFieldModel>('textfields');
+  await Hive.openBox<TextFieldModel>("textFields");
   runApp(const MyApp());
 }
 
