@@ -8,7 +8,7 @@ class ReadData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WatchBoxBuilder(
-      box: Hive.box('textFields'),
+      box: Hive.box<TextFieldModel>('textFields'),
       builder: (context, contactsBox) {
         return ListView.builder(
           shrinkWrap: true,

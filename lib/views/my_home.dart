@@ -14,15 +14,8 @@ class _MyHomeState extends State<MyHome> {
   TextEditingController name = TextEditingController();
   TextEditingController rollno = TextEditingController();
   void create(TextFieldModel textFieldModel) {
-    final contactsBox = Hive.box('textFields');
+    final contactsBox = Hive.box<TextFieldModel>('textFields');
     contactsBox.add(textFieldModel);
-  }
-
-  @override
-  void dispose() {
-    Hive.close(); //Closing All Boxes
-    //Hive.box("textFields").close()
-    super.dispose();
   }
 
   @override
