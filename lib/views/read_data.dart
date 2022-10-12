@@ -22,7 +22,7 @@ class ReadData extends StatelessWidget {
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  IconButton(
+                  /* IconButton(
                     icon: Icon(Icons.refresh),
                     onPressed: () {
                       contactsBox.putAt(
@@ -30,7 +30,7 @@ class ReadData extends StatelessWidget {
                         TextFieldModel('${contact.name}*', contact.rollno + 1),
                       );
                     },
-                  ),
+                  ),*/
                   IconButton(
                     icon: Icon(Icons.delete),
                     onPressed: () {

@@ -15,7 +15,12 @@ class _MyHomeState extends State<MyHome> {
   TextEditingController rollno = TextEditingController();
   void create(TextFieldModel textFieldModel) {
     final contactsBox = Hive.box<TextFieldModel>('textFields');
-    contactsBox.add(textFieldModel);
+    contactsBox.put(rollno.text, textFieldModel);
+  }
+
+  void update(TextFieldModel textFieldModel) {
+    final contactsBox = Hive.box<TextFieldModel>('textFields');
+    contactsBox.put(rollno.text, textFieldModel);
   }
 
   @override
@@ -32,7 +37,7 @@ class _MyHomeState extends State<MyHome> {
             ReuseTextfield(name, "Name"),
             ReuseTextfield(rollno, "RollNo"),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 MaterialButton(
                   onPressed: () async {
@@ -44,6 +49,17 @@ class _MyHomeState extends State<MyHome> {
                   },
                   color: Colors.red,
                   child: const Text("Create"),
+                ),
+                MaterialButton(
+                  onPressed: () async {
+                    final newContact =
+                        TextFieldModel(name.text, int.parse(rollno.text));
+                    update(newContact);
+                    name.clear();
+                    rollno.clear();
+                  },
+                  color: Colors.yellow,
+                  child: const Text("Update"),
                 ),
               ],
             ),
